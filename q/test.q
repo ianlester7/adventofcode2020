@@ -12,7 +12,7 @@ test:{[f;iterations;input;expected;comment]
         [passed:"Y"; "passed with ans=",string[.tmp.ans]];
         [passed:"N"; "failed with ans=",string[.tmp.ans],", expected=",string[expected]]];
     cmntmsg:$[count comment; " (",comment,") "; " "];
-    show f,cmntmsg,passmsg," in ",string[stats 0],"ms (",string[iterations]," runs) using ",string[stats 1]," bytes memory";
+    show f,cmntmsg,passmsg," in ",string[stats 0],"ms (",string[iterations]," run",$[count[iterations]>1;"s";""],") using ",string[stats 1]," bytes memory";
     `.stats.tbl upsert cols[.stats.tbl]!(f; passed; stats 0; stats 1; iterations; comment);
     delete ans, input from `.tmp;
  }
